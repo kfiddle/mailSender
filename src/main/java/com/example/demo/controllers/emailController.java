@@ -59,7 +59,7 @@ public class emailController {
         message.setFrom(from);
         message.setTo(to);
         message.setSubject(contactInfo.fullName);
-        message.setText(contactInfo.message + "**************" + contactInfo.phoneNumber + "***********" + contactInfo.phoneNumber);
+        message.setText(contactInfo.message + "**************" + contactInfo.emailAddress + "***********" + contactInfo.phoneNumber);
 
         mailSender.send(message);
 
