@@ -13,13 +13,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
+
 @RestController
 @CrossOrigin
 public class emailController {
 
 
+     public static class ContactInfoObject {
+            public String fullName;
+            public String phoneNumber;
+            public String emailAddress;
+            public String message;
+
+            public ContactInfoObject(String fullName, String phoneNumber, String emailAddress, String message) {
+                this.fullName = fullName;
+                this.phoneNumber = phoneNumber;
+                this.emailAddress = emailAddress;
+                this.message = message;
+            }
+    }
+
     @PostMapping("/send-message")
-    public void sendEmail(@RequestBody String messageToSend) throws IOException {
+    public void sendEmail(@RequestBody ContactInfoObject contactInfo) throws IOException {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
@@ -42,8 +58,8 @@ public class emailController {
 
         message.setFrom(from);
         message.setTo(to);
-        message.setSubject("I'll have a cherry coke please");
-        message.setText(messageToSend);
+        message.setSubject(contactInfo.fullName);
+        message.setText(contactInfo.message + "**************" + contactInfo.phoneNumber + "***********" + contactInfo.phoneNumber);
 
         mailSender.send(message);
 
