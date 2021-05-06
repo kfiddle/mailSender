@@ -26,8 +26,8 @@ public class emailController {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername(System.getenv(MY_EMAIL));
-        mailSender.setPassword(System.getenv(MY_LOGIN));
+        mailSender.setUsername(System.getenv("MY_EMAIL"));
+        mailSender.setPassword(System.getenv("MY_LOGIN"));
 
 
         Properties properties = new Properties();
