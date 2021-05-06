@@ -19,9 +19,7 @@ public class emailController {
 
 
     @PostMapping("/send-message")
-//    public void sendEmail(@RequestBody String messageToSend) throws IOException {
-
-    public void sendEmail() {
+    public void sendEmail(@RequestBody String messageToSend) throws IOException {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
@@ -45,7 +43,7 @@ public class emailController {
         message.setFrom(from);
         message.setTo(to);
         message.setSubject("I'll have a cherry coke please");
-        message.setText("A Small Test");
+        message.setText(messageToSend);
 
         mailSender.send(message);
 
